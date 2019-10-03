@@ -30,16 +30,19 @@ namespace PLINQ
             }
 
             // TO DO: Create a LINQ query that retrieves all numbers that are greater than 100
+            var over100 = from n in numbers.AsParallel() where TestIfTrue(n > 100) select n;
 
             Stopwatch timer = new Stopwatch();
             timer.Start();
 
             // TO DO: Run the LINQ query and save the results in a List<int> object
+            List<int> numbersOver100 = new List<int>(over100);
 
             long milliseconds = timer.ElapsedMilliseconds;
             timer.Stop();
 
             // TO DO: Display the results
+            Console.WriteLine($"There are {numbersOver100.Count} numbers over 100.");
 
             Console.WriteLine($"Time taken was {milliseconds} ms");
         }
